@@ -1,10 +1,15 @@
-import { useEffect, useState } from 'react';
-import { Form, Input, Button,  } from 'antd';
+import { RefObject, useState } from 'react';
+import { Form, FormInstance, Input, Button } from 'antd';
 import axios from "axios";
 
-function RegisterForm ({ onSuccess, formRef }: { onSuccess: () => void, formRef?: any}) {
-    const [submitting, setSubmitting] = useState(false);
-    const [serverErrMsg, setServerErrMsg] = useState('');
+type RegisterFormProps = {
+  onSuccess: () => void,
+  formRef?: RefObject<FormInstance>,
+};
+
+function RegisterForm ({ onSuccess, formRef }: RegisterFormProps) {
+    const [submitting, setSubmitting] = useState<boolean>(false);
+    const [serverErrMsg, setServerErrMsg] = useState<string>('');
   
     const onFinish = (values: Record<string, string>) => {
       setSubmitting(true);

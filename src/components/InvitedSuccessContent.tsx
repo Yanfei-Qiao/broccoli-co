@@ -1,8 +1,10 @@
-
-import React from 'react';
 import { Button } from 'antd';
 
-function InvitedSuccessContent ({ onOkClick }: { onOkClick:() => void }): JSX.Element {
+type InvitedSuccessContentProps = {
+    onOkClick:() => void
+};
+
+function InvitedSuccessContent ({ onOkClick }: InvitedSuccessContentProps) {
     return (
         <div>
             <h2>All done!</h2>

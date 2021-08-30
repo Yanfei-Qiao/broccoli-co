@@ -1,41 +1,14 @@
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
 import { useState, useRef, useEffect } from 'react';
-import React from 'react';
-import { Form, Button, Modal } from 'antd';
+import { Button, Modal, FormInstance } from 'antd';
+// import { FormInstance } from 'antd/es/form';
 import './App.scss';
 import InvitedSuccessContent from './components/InvitedSuccessContent';
 import RegisterForm from './components/RegisterForm';
 
 function App() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isInviteSuccess, setIsInviteSuccess] = useState(false);
-  const formRef = useRef<any>(null);
-  const [form] = Form.useForm();
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [isInviteSuccess, setIsInviteSuccess] = useState<boolean>(false);
+  const formRef = useRef<FormInstance>(null);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -51,10 +24,8 @@ function App() {
   }
 
   useEffect(() => {
-    if(!isModalVisible) {
-      form.resetFields();
-      // console.log(formRef.current)
-      // formRef.current && formRef.current.setFieldsValue();
+    if(isModalVisible) {
+      formRef.current?.resetFields();
     }
   }, [isModalVisible]);
 
